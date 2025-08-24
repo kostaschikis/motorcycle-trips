@@ -6,15 +6,19 @@
   <link rel="stylesheet" href="style.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Οι διαδρομές μου 🏍️</h1>
+
+  <button id="toggleButton">☰ Routes</button>
+  <div id="sidebar">
+    <h3>Διαδρομές</h3>
+  </div>
   <div id="map"></div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <!-- GPX plugin -->
-  <script src="https://unpkg.com/leaflet-gpx"></script>
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
   <!-- Το δικό σου script -->
   <script src="script.js"></script>

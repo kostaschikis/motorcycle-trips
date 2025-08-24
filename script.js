@@ -1,12 +1,16 @@
 // Δημιουργία χάρτη
-const map = L.map('map').setView([39.0742, 21.8243], 6); // Κέντρο στην Ελλάδα
+const map = L.map('map', {
+  zoomControl: false
+}).setView([39.0742, 21.8243], 6);
 
 // Προσθήκη OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Λίστα με GPX routes
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// Λίστα με kml routes
 const routes = [
   { name: 'Nafplio', file: 'routes/nafplio-trip.kml', color: 'blue' },
   { name: 'Meteora', file: 'routes/meteora-trip.kml', color: 'red' },
@@ -23,19 +27,14 @@ const routes = [
 
 // Object για να κρατάμε τα layers
 const routeLayers = {};
-
-// Δημιουργία UI box
-const routeBox = document.createElement("div");
-routeBox.id = "routeBox";
-routeBox.innerHTML = "<h3>Διαδρομές</h3>";
-document.body.appendChild(routeBox);
+const sidebar = document.getElementById("sidebar");
 
 // Για κάθε route → checkbox + φόρτωμα layer
 routes.forEach(r => {
   // Δημιουργία checkbox
   const label = document.createElement("label");
-  label.innerHTML = `<input type="checkbox" checked id="${r.name}"> ${r.name}<br>`;
-  routeBox.appendChild(label);
+  label.innerHTML = `<input type="checkbox" checked id="${r.name}"> ${r.name}`;
+  sidebar.appendChild(label);
 
   // Φόρτωση KML
   const layer = omnivore.kml(r.file).on("ready", function() {
@@ -59,19 +58,8 @@ routes.forEach(r => {
   });
 });
 
-
-
-// routes.forEach(r => {
-//   omnivore.kml(r.file)
-//     .on('ready', function(e) {
-//       this.setStyle({
-//         color: r.color,
-//         weight: 4,
-//         opacity: 0.75
-//       });
-//       map.fitBounds(this.getBounds());
-//     })
-//     .addTo(map);
-// });
-
-// L.control.layers(null, routes, { collapsed: false }).addTo(map);
+// Toggle button
+const toggleButton = document.getElementById('toggleButton');
+toggleButton.addEventListener('click', () => {
+  sidebar.classList.toggle('hidden');
+});
