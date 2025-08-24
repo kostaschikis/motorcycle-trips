@@ -35,7 +35,7 @@ routes.forEach(r => {
   const label = document.createElement("label");
   label.innerHTML = `<input type="checkbox" checked id="${r.name}"> ${r.name}`;
   sidebar.appendChild(label);
-
+  
   // Φόρτωση KML
   const layer = omnivore.kml(r.file).on("ready", function() {
     this.setStyle({
@@ -44,10 +44,10 @@ routes.forEach(r => {
       opacity: 0.75
     });
   }).addTo(map);
-
+  
   // Αποθήκευση στο routeLayers
   routeLayers[r.name] = layer;
-
+  
   // Listener για toggle
   document.getElementById(r.name).addEventListener("change", e => {
     if (e.target.checked) {
@@ -58,8 +58,12 @@ routes.forEach(r => {
   });
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  sidebar.classList.add("ready");
+});
+
 // Toggle button
 const toggleButton = document.getElementById('toggleButton');
 toggleButton.addEventListener('click', () => {
-  sidebar.classList.toggle('hidden');
+  sidebar.classList.toggle('open');
 });
