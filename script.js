@@ -23,7 +23,7 @@ const routes = [
   { name: 'Psatha-Lake Vouliagmeni', file: 'routes/lake-vouliagmenis.kml', color: '#5438A8' },
   { name: 'Arvanitsa-Arachova', file: 'routes/arvanitsa-arachova.kml', color: '#5438A8' },
   { name: 'Epidavros', file: 'routes/epidavros.kml', color: '#5438A8' },
-  { name: 'Epidavros', file: 'routes/megara-alepochori-psatha.kml', color: '#5438A8' },
+  { name: 'Psatha', file: 'routes/megara-alepochori-psatha.kml', color: '#5438A8' },
 ];
 
 // Object για να κρατάμε τα layers
