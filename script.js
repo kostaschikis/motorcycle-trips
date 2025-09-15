@@ -12,18 +12,19 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 
 // Λίστα με kml routes
 const routes = [
-  { name: 'Nafplio', file: 'routes/nafplio-trip.kml', color: 'blue' },
-  { name: 'Meteora', file: 'routes/meteora-trip.kml', color: 'red' },
-  { name: 'Galaxidi', file: 'routes/galaxidi-trip.kml', color: 'orange' },
-  { name: 'Karpenissi', file: 'routes/karpenissi-trip.kml', color: 'green' },
-  { name: 'Trichonida-Agrafa', file: 'routes/trichonida-trip.kml', color: 'purple' },
-  { name: 'Crete', file: 'routes/crete-trip.kml', color: 'blue' },
-  { name: 'Kalavrita', file: 'routes/kalavrita.kml', color: 'blue' },
-  { name: 'Karystos', file: 'routes/karystos.kml', color: 'blue' },
-  { name: 'Psatha-Lake Vouliagmeni', file: 'routes/lake-vouliagmenis.kml', color: '#5438A8' },
-  { name: 'Arvanitsa-Arachova', file: 'routes/arvanitsa-arachova.kml', color: '#5438A8' },
-  { name: 'Epidavros', file: 'routes/epidavros.kml', color: '#5438A8' },
-  { name: 'Psatha', file: 'routes/megara-alepochori-psatha.kml', color: '#5438A8' },
+  { name: 'Karystos-2024', file: 'routes/karystos.kml', color: 'blue' },
+  { name: 'Kalavrita-2024', file: 'routes/kalavrita.kml', color: 'blue' },
+  { name: 'Nafplio-2025', file: 'routes/nafplio-trip.kml', color: 'blue' },
+  { name: 'Psatha-Lake Vouliagmeni-2025', file: 'routes/lake-vouliagmenis.kml', color: '#5438A8' },
+  { name: 'Epidavros-2025', file: 'routes/epidavros.kml', color: '#5438A8' },
+  { name: 'Meteora-2025', file: 'routes/meteora-trip.kml', color: 'red' },
+  { name: 'Galaxidi-2025', file: 'routes/galaxidi-trip.kml', color: 'orange' },
+  { name: 'Karpenissi-2025', file: 'routes/karpenissi-trip.kml', color: 'green' },
+  { name: 'Crete-2025', file: 'routes/crete-trip.kml', color: 'blue' },
+  { name: 'Trichonida-Agrafa-2025', file: 'routes/trichonida-trip.kml', color: 'purple' },
+  { name: 'Arvanitsa-Arachova-2025', file: 'routes/arvanitsa-arachova.kml', color: '#5438A8' },
+  { name: 'Psatha-2025', file: 'routes/megara-alepochori-psatha.kml', color: '#5438A8' },
+  { name: 'Poros-2025', file: 'routes/poros-trip.kml', color: '#5438A8' },
 ];
 
 // Object για να κρατάμε τα layers
