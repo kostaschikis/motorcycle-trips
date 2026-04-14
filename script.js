@@ -12,19 +12,20 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 
 // Λίστα με kml routes
 const routes = [
-  { name: 'Karystos-2024', file: 'routes/karystos.kml', color: 'blue' },
-  { name: 'Kalavrita-2024', file: 'routes/kalavrita.kml', color: 'blue' },
-  { name: 'Nafplio-2025', file: 'routes/nafplio-trip.kml', color: 'blue' },
-  { name: 'Psatha-Lake Vouliagmeni-2025', file: 'routes/lake-vouliagmenis.kml', color: '#5438A8' },
-  { name: 'Epidavros-2025', file: 'routes/epidavros.kml', color: '#5438A8' },
-  { name: 'Meteora-2025', file: 'routes/meteora-trip.kml', color: 'red' },
-  { name: 'Galaxidi-2025', file: 'routes/galaxidi-trip.kml', color: 'orange' },
-  { name: 'Karpenissi-2025', file: 'routes/karpenissi-trip.kml', color: 'green' },
-  { name: 'Crete-2025', file: 'routes/crete-trip.kml', color: 'blue' },
-  { name: 'Trichonida-Agrafa-2025', file: 'routes/trichonida-trip.kml', color: 'purple' },
-  { name: 'Arvanitsa-Arachova-2025', file: 'routes/arvanitsa-arachova.kml', color: '#5438A8' },
-  { name: 'Psatha-2025', file: 'routes/megara-alepochori-psatha.kml', color: '#5438A8' },
-  { name: 'Poros-2025', file: 'routes/poros-trip.kml', color: '#5438A8' },
+  { name: 'Karystos-2024', file: 'routes/karystos.kml', type: 'klm', color: 'blue' },
+  { name: 'Kalavrita-2024', file: 'routes/kalavrita.kml', type: 'klm', color: 'blue' },
+  { name: 'Nafplio-2025', file: 'routes/nafplio-trip.kml', type: 'klm', color: 'blue' },
+  { name: 'Psatha-Lake Vouliagmeni-2025', file: 'routes/lake-vouliagmenis.kml', type: 'klm', color: '#5438A8' },
+  { name: 'Epidavros-2025', file: 'routes/epidavros.kml', type: 'klm', color: '#5438A8' },
+  { name: 'Meteora-2025', file: 'routes/meteora-trip.kml', type: 'klm', color: 'red' },
+  { name: 'Galaxidi-2025', file: 'routes/galaxidi-trip.kml', type: 'klm', color: 'orange' },
+  { name: 'Karpenissi-2025', file: 'routes/karpenissi-trip.kml', type: 'klm', color: 'green' },
+  { name: 'Crete-2025', file: 'routes/crete-trip.kml', type: 'klm', color: 'blue' },
+  { name: 'Trichonida-Agrafa-2025', file: 'routes/trichonida-trip.kml', type: 'klm', color: 'purple' },
+  { name: 'Arvanitsa-Arachova-2025', file: 'routes/arvanitsa-arachova.kml', type: 'klm', color: '#5438A8' },
+  { name: 'Psatha-2025', file: 'routes/megara-alepochori-psatha.kml', type: 'klm', color: '#5438A8' },
+  { name: 'Poros-2025', file: 'routes/poros-trip.kml', type: 'klm', color: '#5438A8' },
+  { name: 'Stropones', file: 'routes/stropones-amfithea.gpx', type: 'gpx', color: 'blue' },
 ];
 
 // Object για να κρατάμε τα layers
@@ -38,8 +39,9 @@ routes.forEach(r => {
   label.innerHTML = `<input type="checkbox" checked id="${r.name}"> ${r.name}`;
   sidebar.appendChild(label);
   
-  // Φόρτωση KML
-  const layer = omnivore.kml(r.file).on("ready", function() {
+  // Φόρτωση KML/GPX
+  const layer = (r.type === 'gpx' ? omnivore.gpx(r.file) : omnivore.kml(r.file))
+  .on("ready", function() {
     this.setStyle({
       color: r.color,
       weight: 4,
