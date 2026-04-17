@@ -3,71 +3,131 @@ const map = L.map('map', {
   zoomControl: false
 }).setView([39.0742, 21.8243], 6);
 
-// Προσθήκη OpenStreetMap tiles
+// OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 L.control.zoom({ position: 'topright' }).addTo(map);
 
-// Λίστα με kml routes
-const routes = [
-  { name: 'Karystos-2024', file: 'routes/karystos.kml', type: 'klm', color: 'blue' },
-  { name: 'Kalavrita-2024', file: 'routes/kalavrita.kml', type: 'klm', color: 'blue' },
-  { name: 'Nafplio-2025', file: 'routes/nafplio-trip.kml', type: 'klm', color: 'blue' },
-  { name: 'Psatha-Lake Vouliagmeni-2025', file: 'routes/lake-vouliagmenis.kml', type: 'klm', color: '#5438A8' },
-  { name: 'Epidavros-2025', file: 'routes/epidavros.kml', type: 'klm', color: '#5438A8' },
-  { name: 'Meteora-2025', file: 'routes/meteora-trip.kml', type: 'klm', color: 'red' },
-  { name: 'Galaxidi-2025', file: 'routes/galaxidi-trip.kml', type: 'klm', color: 'orange' },
-  { name: 'Karpenissi-2025', file: 'routes/karpenissi-trip.kml', type: 'klm', color: 'green' },
-  { name: 'Crete-2025', file: 'routes/crete-trip.kml', type: 'klm', color: 'blue' },
-  { name: 'Trichonida-Agrafa-2025', file: 'routes/trichonida-trip.kml', type: 'klm', color: 'purple' },
-  { name: 'Arvanitsa-Arachova-2025', file: 'routes/arvanitsa-arachova.kml', type: 'klm', color: '#5438A8' },
-  { name: 'Psatha-2025', file: 'routes/megara-alepochori-psatha.kml', type: 'klm', color: '#5438A8' },
-  { name: 'Poros-2025', file: 'routes/poros-trip.kml', type: 'klm', color: '#5438A8' },
-  { name: 'Stropones', file: 'routes/stropones-amfithea.gpx', type: 'gpx', color: 'blue' },
-];
-
-// Object για να κρατάμε τα layers
+// Storage
 const routeLayers = {};
 const sidebar = document.getElementById("sidebar");
 
-// Για κάθε route → checkbox + φόρτωμα layer
-routes.forEach(r => {
-  // Δημιουργία checkbox
-  const label = document.createElement("label");
-  label.innerHTML = `<input type="checkbox" checked id="${r.name}"> ${r.name}`;
-  sidebar.appendChild(label);
-  
-  // Φόρτωση KML/GPX
-  const layer = (r.type === 'gpx' ? omnivore.gpx(r.file) : omnivore.kml(r.file))
-  .on("ready", function() {
-    this.setStyle({
-      color: r.color,
-      weight: 4,
-      opacity: 0.75
-    });
-  }).addTo(map);
-  
-  // Αποθήκευση στο routeLayers
-  routeLayers[r.name] = layer;
-  
-  // Listener για toggle
-  document.getElementById(r.name).addEventListener("change", e => {
-    if (e.target.checked) {
-      map.addLayer(routeLayers[r.name]);
-    } else {
-      map.removeLayer(routeLayers[r.name]);
-    }
-  });
-});
+// 🔥 Load routes dynamically
+fetch('routes/routes.json')
+  .then(res => res.json())
+  .then(routes => {
 
+    const groups = {};
+
+    routes.forEach(r => {
+
+      const parts = r.file.split('/');
+      const year = parts[0]; // e.g. "2025"
+      const filename = parts[1];
+
+      const name = r.name || filename.replace(/\.[^/.]+$/, "");
+
+      // 🔹 Create year group if not exists
+      if (!groups[year]) {
+        const yearDiv = document.createElement("div");
+        yearDiv.classList.add("year-group");
+
+        const title = document.createElement("h3");
+        title.textContent = year;
+        title.classList.add("year-title");
+
+        // 👉 Collapse toggle
+        title.addEventListener('click', () => {
+          yearDiv.classList.toggle('collapsed');
+        });
+
+        yearDiv.appendChild(title);
+        sidebar.appendChild(yearDiv);
+
+        groups[year] = yearDiv;
+      }
+
+      // 🔹 Create checkbox
+      const label = document.createElement("label");
+      label.innerHTML = `<input type="checkbox" checked id="${name}"> ${name}`;
+      groups[year].appendChild(label);
+
+      const fullPath = `routes/${r.file}`;
+
+      // 🔥 Detect file type
+      let layer;
+      if (r.file.endsWith('.gpx')) {
+        layer = omnivore.gpx(fullPath);
+      } else {
+        layer = omnivore.kml(fullPath);
+      }
+
+      // 🎨 Style (works for GPX multi-layers)
+      layer.on("ready", function () {
+        this.eachLayer(l => {
+          if (l.setStyle) {
+            l.setStyle({
+              color: r.color || "blue",
+              weight: 4,
+              opacity: 0.75
+            });
+          }
+        });
+      }).addTo(map);
+
+      routeLayers[name] = layer;
+
+      // 🔘 Toggle visibility
+      document.getElementById(name).addEventListener("change", e => {
+        if (e.target.checked) {
+          map.addLayer(routeLayers[name]);
+
+          // 🔍 Zoom to route
+          if (routeLayers[name].getBounds) {
+            map.fitBounds(routeLayers[name].getBounds());
+          }
+
+        } else {
+          map.removeLayer(routeLayers[name]);
+        }
+      });
+
+    });
+
+  });
+
+// Sidebar ready animation
 window.addEventListener("DOMContentLoaded", () => {
   sidebar.classList.add("ready");
 });
 
-// Toggle button
+// Toggle sidebar button
 const toggleButton = document.getElementById('toggleButton');
 toggleButton.addEventListener('click', () => {
   sidebar.classList.toggle('open');
+});
+
+const toggleAllBtn = document.getElementById("toggleAllBtn");
+let allSelected = true;
+
+toggleAllBtn.addEventListener("click", () => {
+  const checkboxes = sidebar.querySelectorAll('input[type="checkbox"]');
+
+  allSelected = !allSelected;
+
+  checkboxes.forEach(cb => {
+    cb.checked = allSelected;
+
+    const layer = routeLayers[cb.id];
+
+    if (allSelected) {
+      map.addLayer(layer);
+    } else {
+      map.removeLayer(layer);
+    }
+  });
+
+  toggleAllBtn.textContent = allSelected ? "Deselect All" : "Select All";
 });

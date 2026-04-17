@@ -1,0 +1,17 @@
+[
+  { "name": "Karystos", "file": "2024/karystos.kml", "color": "blue" },
+  { "name": "Kalavrita", "file": "2024/kalavrita.kml", "color": "blue" },
+  { "name": "Nafplio", "file": "2025/nafplio-trip.kml", "color": "blue" },
+  { "name": "Psatha - Lake Vouliagmeni", "file": "2025/lake-vouliagmenis.kml", "color": "#5438A8" },
+  { "name": "Epidavros", "file": "2025/epidavros.kml", "color": "#5438A8" },
+  { "name": "Meteora", "file": "2025/meteora-trip.kml", "color": "red" },
+  { "name": "Galaxidi", "file": "2025/galaxidi-trip.kml", "color": "orange" },
+  { "name": "Karpenissi", "file": "2025/karpenissi-trip.kml", "color": "green" },
+  { "name": "Crete", "file": "2025/crete-trip.kml", "color": "blue" },
+  { "name": "Trichonida - Agrafa", "file": "2025/trichonida-trip.kml", "color": "purple" },
+  { "name": "Arvanitsa - Arachova", "file": "2025/arvanitsa-arachova.kml", "color": "#5438A8" },
+  { "name": "Psatha", "file": "2025/megara-alepochori-psatha.kml", "color": "#5438A8" },
+  { "name": "Poros", "file": "2025/poros-trip.kml", "color": "#5438A8" },
+  { "name": "Stropones - ATH", "file": "2026/stropones-amfithea.gpx", "color": "blue" },
+  { "name": "ATH - Stropones", "file": "2026/athens-stropones.kml", "color": "blue" }
+]
