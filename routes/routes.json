@@ -13,5 +13,6 @@
   { "name": "Psatha", "file": "2025/megara-alepochori-psatha.kml", "color": "#5438A8" },
   { "name": "Poros", "file": "2025/poros-trip.kml", "color": "#5438A8" },
   { "name": "Stropones - ATH", "file": "2026/stropones-amfithea.gpx", "color": "blue" },
-  { "name": "ATH - Stropones", "file": "2026/athens-stropones.kml", "color": "blue" }
+  { "name": "ATH - Stropones", "file": "2026/athens-stropones.kml", "color": "blue" },
+  { "name": "Karteroli-Mani", "file": "2026/karteroli-mani.kml", "color": "blue" }
 ]
