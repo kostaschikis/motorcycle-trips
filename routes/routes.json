@@ -16,5 +16,14 @@
   { "name": "Poros", "file": "2025/poros-trip.kml", "color": "#5438A8" },
   { "name": "Stropones - ATH", "file": "2026/stropones-amfithea.gpx", "color": "blue" },
   { "name": "ATH - Stropones", "file": "2026/athens-stropones.kml", "color": "blue" },
-  { "name": "Karteroli-Mani", "file": "2026/karteroli-mani.kml", "color": "blue" }
+  { "name": "Home To Karditsa", "file": "Epirus_2026/DAY_1_HOME_KARDITSA_MOLOCHA.kml", "color": "green" },
+  { "name": "Limni Plastira", "file": "Epirus_2026/DAY_2_LIMNI_PLASTIRA_PARATIRITIRIO_PEZOULAS.gpx", "color": "green" },
+  { "name": "Molocha - Ropoto - Arta", "file": "Epirus_2026/DAY_3_MOLOCHA_ROPOTO_ARTA.gpx", "color": "green" },
+  { "name": "Ioannina - Bikos - Papigko", "file": "Epirus_2026/DAY_4_ARTA_RANCHO_BIKOS_PAPIGKO.gpx", "color": "green" },
+  { "name": "Mparos Pass", "file": "Epirus_2026/DAY_5_RANCHO_RELAXO_MPAROS_FROM_XALIKI_KALARITRES_PRAMANTA.gpx", "color": "green" },
+  { "name": "Ioannina - Konitsa", "file": "Epirus_2026/DAY_6_IOANNINA_TO_KONITSA.gpx", "color": "green" },
+  { "name": "Konitsa - Kastoria", "file": "Epirus_2026/DAY_7_KONITSA_TO_KASTORIA.gpx", "color": "green" },
+  { "name": "Round The Zagori", "file": "Epirus_2026/DAY_8_ROUND_THE_TYMFI.gpx", "color": "green" },
+  { "name": "Konitsa - Aetomilitsa", "file": "Epirus_2026/DAY_9_KONITSA_TO_AETOMILITSA.gpx", "color": "green" },
+  { "name": "Konitsa - Athens", "file": "Epirus_2026/DAY_10_KONITSA_TO_ATHENS.kml", "color": "green" }
 ]
