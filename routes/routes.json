@@ -27,5 +27,6 @@
   { "name": "Round The Zagori", "file": "Epirus_2026/DAY_8_ROUND_THE_TYMFI.gpx", "color": "green" },
   { "name": "Konitsa - Aetomilitsa", "file": "Epirus_2026/DAY_9_KONITSA_TO_AETOMILITSA.gpx", "color": "green" },
   { "name": "Konitsa - Athens", "file": "Epirus_2026/DAY_10_KONITSA_TO_ATHENS.kml", "color": "green" },
-  { "name": "Athens - Limnes Orixion", "file": "2026/Limnes-Orixion.gpx", "color": "blue" }
+  { "name": "Athens - Limnes Orixion", "file": "2026/Limnes-Orixion.gpx", "color": "blue" },
+  { "name": "Athens - Trikala Korinthias - Arakadia", "file": "2026/trikala-korinthias.kml", "color": "blue" }
 ]
